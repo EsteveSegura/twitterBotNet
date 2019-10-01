@@ -1,0 +1,19 @@
+{
+  "name": "twitterbotnet",
+  "version": "0.0.1",
+  "description": "botnet for countering botnet",
+  "main": "app.js",
+  "scripts": {
+    "test": "cd src && node app.js"
+  },
+  "keywords": [
+    "bot",
+    "twitter"
+  ],
+  "author": "GiR",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "puppeteer": "^1.20.0"
+  }
+}
