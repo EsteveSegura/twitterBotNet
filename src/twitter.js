@@ -11,7 +11,24 @@ module.exports = class TwitterBot{
     //login by .env File
     async login(){
         //Opening Twitter
-        const browser = await puppeteer.launch({headless: false});
+        const args = [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-infobars',
+            '--window-position=0,0',
+            '--ignore-certifcate-errors',
+            '--ignore-certifcate-errors-spki-list',
+            '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"'
+        ];
+
+        const options = {
+            args,
+            headless: false,
+            ignoreHTTPSErrors: true,
+            userDataDir: './tmp'
+        };
+
+        const browser = await puppeteer.launch(options);
         const page = await browser.newPage();
         await page.goto('https://twitter.com/login', {waitUntil: 'networkidle2'});
 
@@ -42,6 +59,15 @@ module.exports = class TwitterBot{
         
         //Click on send button... This can be done with shorcut Ctrl+Enter
         await actualSession.page.click(`[role="button"][tabindex="0"] > div > span > span`);
+    }
+
+    async postTweet(actualSession,text){
+        if(text.length < 265){
+            await actualSession.page.goto("https://twitter.com/compose/tweet", { waitUntil: "networkidle2" });
+
+            await actualSession.page.type(".public-DraftStyleDefault-block.public-DraftStyleDefault-ltr", text, { delay: 20 });
+            await actualSession.page.click(`[role="button"][tabindex="0"] > div > span > span`);
+        }
     }
 
     async close(actualSession){
