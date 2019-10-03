@@ -88,4 +88,5 @@ typings/
 .dynamodb/
 
 /src/tmp
-/database/
+
+/database
