@@ -39,6 +39,7 @@ module.exports = class TwitterBot{
         await actualSession.page.click(`article [role="group"] [role="button"]`)
         await actualSession.page.waitFor(8000)
         await actualSession.page.type(".public-DraftStyleDefault-block.public-DraftStyleDefault-ltr", text, { delay: 20 });
+        
         //Click on send button... This can be done with shorcut Ctrl+Enter
         await actualSession.page.click(`[role="button"][tabindex="0"] > div > span > span`);
     }
