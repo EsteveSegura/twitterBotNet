@@ -4,7 +4,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('../database/db.json');
 const db = low(adapter)
 
-/*module.exports = */class createBot{
+module.exports = class createBot{
     constructor(userTwitter,passwordTwitter, emailTwitter, passwordEmailTwitter){
         db.defaults({ users:[], userAgents:[], proxies:[] }).write()
         this.userTwitter = userTwitter
@@ -78,6 +78,7 @@ const db = low(adapter)
     }
 }
 
-
+/*
 let bot = new createBot("girlazote","1234","----@gmail.com","---------")
 console.log(bot)
+*/
