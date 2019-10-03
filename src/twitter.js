@@ -2,10 +2,11 @@ const puppeteer = require('puppeteer');
 
 
 module.exports = class TwitterBot{
-    constructor(user,password,proxy){
+    constructor(user,password,proxy,userAgent){
         this.user = user;
         this.password = password;
         this.proxy = proxy;
+        this.userAgent = userAgent;
     }
     
     //login by .env File
@@ -18,14 +19,14 @@ module.exports = class TwitterBot{
             '--window-position=0,0',
             '--ignore-certifcate-errors',
             '--ignore-certifcate-errors-spki-list',
-            '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36"'
+            `--user-agent="${this.userAgent}"`
         ];
 
         const options = {
             args,
             headless: false,
             ignoreHTTPSErrors: true,
-            userDataDir: './tmp'
+            //userDataDir: './tmp'
         };
 
         const browser = await puppeteer.launch(options);
@@ -68,6 +69,10 @@ module.exports = class TwitterBot{
             await actualSession.page.type(".public-DraftStyleDefault-block.public-DraftStyleDefault-ltr", text, { delay: 20 });
             await actualSession.page.click(`[role="button"][tabindex="0"] > div > span > span`);
         }
+    }
+
+    async checkUserAgent(actualSession){
+        await actualSession.page.goto("https://www.whatismybrowser.com/detect/what-is-my-user-agent", { waitUntil: "networkidle2" });
     }
 
     async close(actualSession){

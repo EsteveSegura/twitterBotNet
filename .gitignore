@@ -86,3 +86,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+/src/tmp
+database/db.json
+database/db.json

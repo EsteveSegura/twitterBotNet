@@ -1,5 +1,13 @@
 {
-  "users": [],
+  "users": [
+    {
+      "userTwitter": "-------",
+      "passwordTwitter": "------",
+      "emailTwitter": "----@gmail.com",
+      "passwordEmailTwitter": "---------",
+      "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
+    }
+  ],
   "userAgents": [
     {
       "userAgent": "Mozilla/5.0 (Windows NT 6.1; rv:49.0) Gecko/20100101 Firefox/49.0"

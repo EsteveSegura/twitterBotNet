@@ -1,10 +1,10 @@
 const low = require('lowdb');
 const _ = require('lodash');
-const FileAsync = require('lowdb/adapters/FileSync');
-const adapter = new FileAsync('../database/db.json');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('../database/db.json');
 const db = low(adapter)
 
-module.exports = class createBot{
+/*module.exports = */class createBot{
     constructor(userTwitter,passwordTwitter, emailTwitter, passwordEmailTwitter){
         db.defaults({ users:[], userAgents:[], proxies:[] }).write()
         this.userTwitter = userTwitter
@@ -13,7 +13,6 @@ module.exports = class createBot{
         this.passwordEmailTwitter = passwordEmailTwitter
         this.registeredStatus = false
         let registered = this.registerNewBot();
-        console.log(registered)
         if(registered){
             this.registeredStatus = true;
         }
@@ -80,5 +79,5 @@ module.exports = class createBot{
 }
 
 
-let bot = new createBot("s3a3d","g","g","g")
+let bot = new createBot("girlazote","1234","----@gmail.com","---------")
 console.log(bot)
