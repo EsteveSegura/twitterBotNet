@@ -2,7 +2,6 @@
 
 **twitterBotNet** is a system ready to load a few users, passwords, proxies and we can start doing great things!
 
----
 ## Quick usage
 #### Step 1
 Edit the file **/database/db.json** with your proxies.
