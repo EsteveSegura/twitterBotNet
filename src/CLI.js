@@ -35,6 +35,7 @@ inquirer
                 message: 'Choose path to txt file',
             },
         ]).then(async (answers) => {
+            //CONVERT THIS IN MENU  
             let botsReadLineByLine = await utils.readFileLineByLine(`../data/${answers.addBot}`)
             botsReadLineByLine.forEach((bot) => {
                 bot = bot.split(":")

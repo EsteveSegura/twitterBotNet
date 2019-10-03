@@ -24,11 +24,10 @@ async function main(user,password,proxy,userAgent){
 
     await bot.checkUserAgent(actualSession)
     console.log(`Close`);
-    //await bot.close(actualSession);
+    await bot.close(actualSession);
 }
 
 (async ()=>{
-    console.log("s")
     for(let i = 0; i < dataBase.length ; i++){
         console.log(dataBase[i])
         await main(dataBase[i].userTwitter,dataBase[i].passwordTwitter,"proxy",dataBase[i].userAgent );
