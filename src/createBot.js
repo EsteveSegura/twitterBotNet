@@ -1,84 +1,71 @@
 const low = require('lowdb');
-const _ = require('lodash');
+const utils = require('./utils');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('../database/db.json');
 const db = low(adapter)
+const _ = require('lodash');
+const createProxy = require('./createProxy');
+
 
 module.exports = class createBot{
     constructor(userTwitter,passwordTwitter, emailTwitter, passwordEmailTwitter){
-        db.defaults({ users:[], userAgents:[], proxies:[] }).write()
         this.userTwitter = userTwitter
         this.passwordTwitter = passwordTwitter
         this.emailTwitter = emailTwitter
         this.passwordEmailTwitter = passwordEmailTwitter
         this.registeredStatus = false
-        let registered = this.registerNewBot();
-        if(registered){
-            this.registeredStatus = true;
-        }
+        db.defaults({ users:[], userAgents:[], proxies:[] }).write()
+    }
+    getUsers(){
+        return db.get('users').value()
     }
 
-    findHowManyBotsInUserAgent(){
-        let dataBase = db.get('users').value()
-        let userAgents = db.get('userAgents').value()
-        let howManyBotsAreInUserAgent = []
+    getProxies(){
+        return db.get('proxies').value()
+    }
 
-
-        //Find duplicated and count it
-        dataBase = dataBase.sort();
-        let currentUserAgent = null;
-        let count = 0;
-        for(let i = 0 ; i < dataBase.length ; i++){
-            if(dataBase[i].userAgent != currentUserAgent){
-                if(count > 0){
-                    howManyBotsAreInUserAgent.push({
-                        userAgent : currentUserAgent,
-                        howManyBots : count
-                    });
-                }
-                currentUserAgent = dataBase[i].userAgent;
-                count = 1;
-            }else{
-                count++;
-            }
-        }
-        if(count > 0){
-            howManyBotsAreInUserAgent.push({
-                userAgent : currentUserAgent,
-                howManyBots : count
-            });
-        }
-        
-        //Make userAgents ready for compare with loadash
-        userAgents = userAgents.map((userAgent)=>{
-            return {
-                "userAgent": userAgent.userAgent,
-                "howManyBots":0
-            }
+    /*
+    checkIfProxyIsUsed(){
+        let users = this.getUsers()
+        let proxies = this.getProxies()
+        let proxiesUsed  = users.map((user)=>{
+            return { "ipProxy" : user.ipProxy}
         })
+        let diff = _.pullAllBy(proxies,proxiesUsed, "ipProxy")
+        return diff
+    }
+    */
 
-        //Merge unique and sort by less used
-        howManyBotsAreInUserAgent = _.unionBy(howManyBotsAreInUserAgent,userAgents,'userAgent')
-        howManyBotsAreInUserAgent.sort((a,b) => a.howManyBots - b.howManyBots);
-        return howManyBotsAreInUserAgent;
+    checkIfProxyIsUsed(){
+        let users = this.getUsers()
+        let proxies = this.getProxies()
+        let proxiesUsed  = users.map((user)=>{
+            return user.ipProxy;
+        })
+        let proxiesList = proxies.map((proxy)=>{
+            return proxy.ipProxy;
+        })
+        //console.log(proxiesList)
+        //console.log(proxiesUsed)
+        let allData = [...proxiesList,...proxiesUsed]
+
+        return utils.getNonUnique(allData)
+        
     }
 
-    registerNewBot(){
+    async registerNewBot(){
         //Search if user exist and get the user agent less used
+        let userAgents = db.get('userAgents').value()
         let findInDb = db.get('users').find({ "userTwitter" : this.userTwitter }).value()
-        let userAgentToUse = this.findHowManyBotsInUserAgent()
+        let userAgentToUse = userAgents[utils.randomInt(0,userAgents.length-1)].userAgent
+        let proxyToUse = this.checkIfProxyIsUsed()
 
         //if not exists, save to db if exists, return false
         if(typeof findInDb == "undefined"){
-            db.get('users').push({ "userTwitter": this.userTwitter ,"passwordTwitter": this.passwordTwitter, "emailTwitter":this.emailTwitter, "passwordEmailTwitter": this.passwordEmailTwitter, "userAgent": userAgentToUse[0].userAgent }).write()
+            db.get('users').push({ "userTwitter": this.userTwitter ,"passwordTwitter": this.passwordTwitter, "emailTwitter":this.emailTwitter, "passwordEmailTwitter": this.passwordEmailTwitter, "userAgent": userAgentToUse, "ipProxy" : proxyToUse[0] }).write()
             return true
         }else{
             return false
         }
     }
 }
-
-/*
-let bot = new createBot("girlazote","1234","----@gmail.com","---------")
-console.log(bot)
-*/
