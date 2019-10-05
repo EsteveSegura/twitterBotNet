@@ -3,7 +3,6 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('../database/db.json');
 const db = low(adapter)
-require('dotenv').config();
 const dataBase = db.get('users').value()
 
 

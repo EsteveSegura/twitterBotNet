@@ -2,11 +2,17 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const clear = require('clear');
 const utils = require('./utils');
+const twitterBot = require('./twitter.js');
+
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('../database/db.json');
+const db = low(adapter)
+const dataBase = db.get('users').value()
+
 
 let filesRead = []
 const dataFolder = "../data/"
-
-
 
 async function menu(){
     return new Promise((resolve,reject)=>{
@@ -50,6 +56,14 @@ async function menu(){
                 }
             })
             switch (answers.actionToDo){
+                case 'Launch Attack':
+                    for(let i = 0; i < dataBase.length ; i++){
+                        console.log(dataBase[i])
+                        await main(dataBase[i].userTwitter,dataBase[i].passwordTwitter,"proxy",dataBase[i].userAgent );
+                    }
+                    clear()
+                break;
+
                 //ADD NEW BOTS
                 case 'Add new bots':
                     const createBot = require('./createBot.js');
@@ -151,3 +165,24 @@ async function menu(){
         await menu()
     }
 })();
+
+
+
+//Example bot 
+async function main(user,password,proxy,userAgent){
+    const bot = new twitterBot(user,password,proxy,userAgent);
+    //Perform login
+    console.log(`Login with: ${user}`);
+    let actualSession = await bot.login();
+    
+    //Answering a tweet
+    /*let tweetToAnswering = "https://twitter.com/Wauxx00_/status/1179094549882384384"
+    console.log(`Answering to: ${tweetToAnswering} `)
+    await bot.awenserTweetById(actualSession,tweetToAnswering,"U cat!")*/
+
+    //await bot.postTweet(actualSession,".");
+
+    await bot.checkUserAgent(actualSession)
+    console.log(`Close`);
+    await bot.close(actualSession);
+}

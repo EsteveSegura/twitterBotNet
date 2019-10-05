@@ -23,6 +23,5 @@ module.exports = class createProxy{
         }else{
             return false
         }
-            
     }
 }
