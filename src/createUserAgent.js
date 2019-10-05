@@ -13,9 +13,8 @@ module.exports = class createUserAgent{
     }
     
     registerNewUserAgent(){
-        //Search if user exist and get the user agent less used
         let findInDb = db.get('userAgents').find({ "userAgent" : this.userAgent }).value()
-        //if not exists, save to db if exists, return false
+
         if(typeof findInDb == "undefined"){
             db.get('userAgents').push({ "userAgent": this.userAgent }).write()
             return true

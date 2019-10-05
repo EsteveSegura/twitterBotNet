@@ -1,8 +1,12 @@
+const fs = require('fs');
 const inquirer = require('inquirer');
 const clear = require('clear');
 const utils = require('./utils');
+
 let filesRead = []
 const dataFolder = "../data/"
+
+
 
 async function menu(){
     return new Promise((resolve,reject)=>{
@@ -29,6 +33,10 @@ async function menu(){
                     },
                     {
                         key: '4',
+                        value: 'Flush data'
+                    },
+                    {
+                        key: '5',
                         value: 'Exit',
                     },
                 ],
@@ -118,6 +126,20 @@ async function menu(){
                         }
                         clear()
                     });
+                break;
+
+                case 'Flush data':
+                    try {
+                        fs.unlinkSync('../database/db.json');
+                        resolve("OK")
+                    } catch (error) {
+                        resolve("File Not Found")        
+                    }
+                    clear()
+                break;
+
+                case 'Exit':
+                    clear()
                 break;
             }
         });

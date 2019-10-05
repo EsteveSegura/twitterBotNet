@@ -26,5 +26,3 @@ module.exports = class createProxy{
             
     }
 }
-
-//let p = new createProxy("a3","a","a","a")

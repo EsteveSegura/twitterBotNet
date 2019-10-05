@@ -1,5 +1,182 @@
 {
-  "users": [  ],
-  "userAgents": [  ],
-  "proxies": [  ]
+  "users": [
+    {
+      "userTwitter": "user17",
+      "passwordTwitter": "pw17",
+      "emailTwitter": "email17",
+      "passwordEmailTwitter": "pwemail17",
+      "userAgent": "9",
+      "ipProxy": "123.43.54.12"
+    },
+    {
+      "userTwitter": "user18",
+      "passwordTwitter": "pw18",
+      "emailTwitter": "email18",
+      "passwordEmailTwitter": "pwemail18",
+      "userAgent": "8",
+      "ipProxy": "87.33.10.39"
+    },
+    {
+      "userTwitter": "user1",
+      "passwordTwitter": "pw1",
+      "emailTwitter": "email1",
+      "passwordEmailTwitter": "pwemail1",
+      "userAgent": "1",
+      "ipProxy": "21.645.45.35"
+    },
+    {
+      "userTwitter": "user2",
+      "passwordTwitter": "pw2",
+      "emailTwitter": "email2",
+      "passwordEmailTwitter": "pwemail2",
+      "userAgent": "3"
+    },
+    {
+      "userTwitter": "user3",
+      "passwordTwitter": "pw3",
+      "emailTwitter": "email3",
+      "passwordEmailTwitter": "pwemail3",
+      "userAgent": "6"
+    },
+    {
+      "userTwitter": "user4",
+      "passwordTwitter": "pw4",
+      "emailTwitter": "email4",
+      "passwordEmailTwitter": "pwemail4",
+      "userAgent": "7"
+    },
+    {
+      "userTwitter": "user5",
+      "passwordTwitter": "pw5",
+      "emailTwitter": "email5",
+      "passwordEmailTwitter": "pwemail5",
+      "userAgent": "3"
+    },
+    {
+      "userTwitter": "user6",
+      "passwordTwitter": "pw6",
+      "emailTwitter": "email6",
+      "passwordEmailTwitter": "pwemail6",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user7",
+      "passwordTwitter": "pw7",
+      "emailTwitter": "email7",
+      "passwordEmailTwitter": "pwemail7",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user8",
+      "passwordTwitter": "pw8",
+      "emailTwitter": "email8",
+      "passwordEmailTwitter": "pwemail8",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user9",
+      "passwordTwitter": "pw9",
+      "emailTwitter": "email9",
+      "passwordEmailTwitter": "pwemail9",
+      "userAgent": "8"
+    },
+    {
+      "userTwitter": "user10",
+      "passwordTwitter": "pw10",
+      "emailTwitter": "email10",
+      "passwordEmailTwitter": "pwemail10",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user11",
+      "passwordTwitter": "pw11",
+      "emailTwitter": "email11",
+      "passwordEmailTwitter": "pwemail11",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user12",
+      "passwordTwitter": "pw12",
+      "emailTwitter": "email12",
+      "passwordEmailTwitter": "pwemail12",
+      "userAgent": "4"
+    },
+    {
+      "userTwitter": "user13",
+      "passwordTwitter": "pw13",
+      "emailTwitter": "email13",
+      "passwordEmailTwitter": "pwemail13",
+      "userAgent": "7"
+    },
+    {
+      "userTwitter": "user14",
+      "passwordTwitter": "pw14",
+      "emailTwitter": "email14",
+      "passwordEmailTwitter": "pwemail14",
+      "userAgent": "8"
+    },
+    {
+      "userTwitter": "user15",
+      "passwordTwitter": "pw15",
+      "emailTwitter": "email15",
+      "passwordEmailTwitter": "pwemail15",
+      "userAgent": "3"
+    },
+    {
+      "userTwitter": "user16",
+      "passwordTwitter": "pw16",
+      "emailTwitter": "email16",
+      "passwordEmailTwitter": "pwemail16",
+      "userAgent": "8"
+    }
+  ],
+  "userAgents": [
+    {
+      "userAgent": "1"
+    },
+    {
+      "userAgent": "2"
+    },
+    {
+      "userAgent": "3"
+    },
+    {
+      "userAgent": "4"
+    },
+    {
+      "userAgent": "5"
+    },
+    {
+      "userAgent": "6"
+    },
+    {
+      "userAgent": "7"
+    },
+    {
+      "userAgent": "8"
+    },
+    {
+      "userAgent": "9"
+    }
+  ],
+  "proxies": [
+    {
+      "ipProxy": "123.43.54.12",
+      "port": "80",
+      "user": "userOne",
+      "password": "PasswordOne"
+    },
+    {
+      "ipProxy": "87.33.10.39",
+      "port": "8080",
+      "user": "userTwo",
+      "password": "PasswordTwo"
+    },
+    {
+      "ipProxy": "21.645.45.35",
+      "port": "8080",
+      "user": "userTwo",
+      "password": "PasswordTwo"
+    }
+  ]
 }

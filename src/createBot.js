@@ -24,18 +24,6 @@ module.exports = class createBot{
         return db.get('proxies').value()
     }
 
-    /*
-    checkIfProxyIsUsed(){
-        let users = this.getUsers()
-        let proxies = this.getProxies()
-        let proxiesUsed  = users.map((user)=>{
-            return { "ipProxy" : user.ipProxy}
-        })
-        let diff = _.pullAllBy(proxies,proxiesUsed, "ipProxy")
-        return diff
-    }
-    */
-
     checkIfProxyIsUsed(){
         let users = this.getUsers()
         let proxies = this.getProxies()
@@ -45,12 +33,9 @@ module.exports = class createBot{
         let proxiesList = proxies.map((proxy)=>{
             return proxy.ipProxy;
         })
-        //console.log(proxiesList)
-        //console.log(proxiesUsed)
-        let allData = [...proxiesList,...proxiesUsed]
-
-        return utils.getNonUnique(allData)
         
+        let allData = [...proxiesList,...proxiesUsed]
+        return utils.getNonUnique(allData)
     }
 
     async registerNewBot(){
